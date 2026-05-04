@@ -89,7 +89,7 @@ const jogos = [
           {section.title}
                   </Text>
           {
-          section dados.map(jogo =>  {
+          section.jogos.map(jogo =>  {
             <GameCard key {jogo.id} game {jogo} />
           })
           }
