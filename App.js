@@ -85,12 +85,12 @@ const jogos = [
     renderSectionHeader={ ({section}) => (
       <View style={styles.card}>
 
-        <Text>
+        <Text style={styles.data}>
           {section.title}
                   </Text>
           {
           section.data.map(jogo =>  {
-            <GameCard key {jogo.id} game {jogo} />
+            <GameCard key={jogo.id} game={jogo} />
           })
           }
 
