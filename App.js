@@ -25,7 +25,7 @@ export default function App() {
   const jogosTratados = Object.keys(jogosAgrupados).map(data => {
   return {
     title: data,
-    dados: jogosAgrupados[data]
+    data: jogosAgrupados[data]
   }
 });
 
@@ -89,7 +89,7 @@ const jogos = [
           {section.title}
                   </Text>
           {
-          section.jogos.map(jogo =>  {
+          section.data.map(jogo =>  {
             <GameCard key {jogo.id} game {jogo} />
           })
           }
