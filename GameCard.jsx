@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
-export default function GameCard({ game }) {
+export default function GameCard({ game, isFavorito, onToggleFavorito }) {
 
     const  flags = {
         MEX: require('../unicopa/assets/jogos/mexico.png'),
@@ -11,6 +12,12 @@ export default function GameCard({ game }) {
 
     return (
         <View style={styles.jogo}>
+
+          <TouchableOpacity onPress={onToggleFavorito}>
+          <Text style={{ color: isFavorito ? 'yellow' : 'white', fontSize: 18 }}>
+            {isFavorito ? '★ Favorito' : '☆ Favoritar'}
+          </Text>
+          </TouchableOpacity>
 
             <Text style={styles.grupo}>
                 GRUPO {game.grupo}  {game.confronto}

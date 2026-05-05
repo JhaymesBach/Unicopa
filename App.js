@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import GameCard from './GameCard';
 import dados from './assets/dados.json';
 import { SectionList } from 'react-native';
+import { useState } from 'react';
 export default function App() {
 
   const agruparPorData =(jogos) => {
@@ -20,8 +21,17 @@ export default function App() {
     }, {})
   }
 
+  const [favoritos, setFavoritos] = useState([]);
   
-
+  const toggleFavorito = (id) => {
+  setFavoritos((prev) => {
+    if (prev.includes(id)) {
+      return prev.filter((item) => item !== id);
+    } else {
+      return [...prev, id];
+    }
+  });
+};
   
 
 const jogos = [
@@ -95,7 +105,12 @@ const jogos = [
                   </Text>
           {
           section.data.map(jogo =>  (
-            <GameCard key={jogo.id} game={jogo} />
+            <GameCard
+            key={jogo.id}
+            game={jogo}
+            isFavorito={favoritos.includes(jogo.id)}
+            onToggleFavorito={() => toggleFavorito(jogo.id)}
+/>
           ))
           }
 
