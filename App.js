@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import GameCard from './GameCard';
 import dados from './assets/dados.json';
-import { SectionList } from 'react-native-web';
+import { SectionList } from 'react-native';
 export default function App() {
 
   const agruparPorData =(jogos) => {
@@ -20,17 +20,13 @@ export default function App() {
     }, {})
   }
 
-  const jogosAgrupados = agruparPorData(jogos);
+  
 
-  const jogosTratados = Object.keys(jogosAgrupados).map(data => {
-  return {
-    title: data,
-    data: jogosAgrupados[data]
-  }
-});
+  
 
 const jogos = [
 
+  
    
     {
       "id": 1,
@@ -68,6 +64,15 @@ const jogos = [
     }
   ]
 
+  const jogosAgrupados = agruparPorData(jogos);
+
+  const jogosTratados = Object.keys(jogosAgrupados).map(data => {
+  return {
+    title: data,
+    data: jogosAgrupados[data]
+  }
+});
+
   return (
     <ImageBackground style={styles.container}
       source={require('./assets/bg-overlay.png')}>
@@ -89,9 +94,9 @@ const jogos = [
           {section.title}
                   </Text>
           {
-          section.data.map(jogo =>  {
+          section.data.map(jogo =>  (
             <GameCard key={jogo.id} game={jogo} />
-          })
+          ))
           }
 
 
