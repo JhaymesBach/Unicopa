@@ -1,14 +1,29 @@
 import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import GameCard from './GameCard';
-import dados from './assets/dados.json';
+
 import { SectionList } from 'react-native';
 import { useState } from 'react';
+import { supabase } from './utils/supabase';
 export default function App() {
 
   const agruparPorData =(jogos) => {
     return jogos.reduce((acc, jogo) => {
 
       const data = jogo.data_brasilia;
+
+      const [jogos, setjogos] = useState([])
+
+      useEffect(() =>  {
+        async function carregarJogos(){
+          const {data, error} = await supabase
+          .from('jogos')
+          .select('*')
+
+          if(!error){
+            setJogos(data)
+          }
+        }
+      })
 
       if (!acc[data]) {
         acc[data] = [];
