@@ -18,6 +18,7 @@ export default function App() {
           const {data, error} = await supabase
           .from('jogos')
           .select('*')
+          .order('data_brasilia', {ascending: false})
 
           if(!error){
             setJogos(data)
