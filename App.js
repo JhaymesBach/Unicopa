@@ -31,7 +31,7 @@ export default function App() {
       return [...prev, id];
     }
   });
-};
+}; 
   
 
 const jogos = [
